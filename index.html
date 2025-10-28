@@ -64,7 +64,173 @@
       </div>
     </header>
 
-    <!-- resto del documento igual que en el original -->
+    <section id="detalles" class="section card">
+      <h2>Detalles</h2>
+      <div class="grid grid-3">
+        <div>
+          <h3>Ceremonia</h3>
+          <p>17:00 — Ermita de San Antonio del Cerro</p>
+        </div>
+        <div>
+          <h3>Cóctel &amp; Banquete</h3>
+          <p>19:00 — Campo de Golf de Los Angeles de San Rafael</p>
+        </div>
+        <div>
+          <h3>Fiesta</h3>
+          <p>22:30 — Pista de baile (barra libre 🎉)</p>
+        </div>
+      </div>
+      <p class="small muted">Código de vestimenta: elegante. Parking disponible. Si vienes con niños, indícalo en el formulario.</p>
+    </section>
+
+    <section class="section card">
+      <h2>Cómo llegar</h2>
+      <p>Ermita de San Antonio del Cerro, Navas de San Antonio</p>
+      <div style="border-radius:16px;overflow:hidden;border:1px solid #e5e7eb">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49600.454458258246!2d-4.34474446127202!3d40.795274721496334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd411bf0e90255fd%3A0xdc6a803a9abf682c!2sErmita%20de%20San%20Antonio%20del%20Cerro!5e0!3m2!1ses!2ses!4v1761122975060!5m2!1ses!2ses" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </section>
+      </div>
+    </section>
+
+    <section id="rsvp" class="section card" aria-labelledby="rsvp-title">
+      <h2 id="rsvp-title">Confirmación de asistencia (RSVP)</h2>
+      <p class="muted small">Rellena el formulario. Te enviaremos un email de confirmación si indicas tu correo.</p>
+
+      <form id="form-rsvp" novalidate>
+        <div class="row">
+          <div>
+            <label for="nombre">Nombre y apellidos *</label>
+            <input id="nombre" name="nombre" type="text" required minlength="2" placeholder="Ej: María Ubero" />
+          </div>
+          <div>
+            <label for="email">Email (para confirmación)</label>
+            <input id="email" name="email" type="email" placeholder="mery@example.com" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" name="telefono" type="tel" placeholder="+34 600 000 000" />
+          </div>
+          <div>
+            <label for="asistencia">¿Asistirás? *</label>
+            <select id="asistencia" name="asistencia" required>
+              <option value="">Selecciona…</option>
+              <option value="Si">Sí, asistiré</option>
+              <option value="No">No podré asistir</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row-3 row">
+          <div>
+            <label for="acompanantes">Nº de acompañantes</label>
+            <input id="acompanantes" name="acompanantes" type="number" min="0" max="10" value="0" />
+          </div>
+          <div>
+            <label for="menu">Preferencia de menú</label>
+            <select id="menu" name="menu">
+              <option value="">Sin preferencia</option>
+              <option>Tradicional</option>
+              <option>Vegetariano</option>
+              <option>Vegano</option>
+              <option>Infantil</option>
+              <option>Sin gluten</option>
+              <option>Sin lactosa</option>
+            </select>
+          </div>
+          <div>
+            <label for="alergias">Alergias/intolerancias</label>
+            <input id="alergias" name="alergias" type="text" placeholder="Ej: frutos secos" />
+          </div>
+        </div>
+
+        <label for="cancion">¿Qué canción no puede faltar?</label>
+        <input id="cancion" name="cancion" type="text" placeholder="Tu canción favorita" />
+
+        <label for="mensaje">Mensaje para los novios</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje…"></textarea>
+
+        <!-- Honeypot anti-spam -->
+        <input id="website" name="website" type="text" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="small muted">
+          <label><input type="checkbox" id="acepto" required> Acepto que mis datos se utilicen para gestionar la asistencia.</label>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn" type="submit" id="btn-enviar">Enviar</button>
+          <button class="btn secondary" type="button" id="btn-mailto">Enviar por correo (alternativa)</button>
+        </div>
+        <div id="msg-ok" class="ok">¡Gracias! Hemos registrado tu respuesta.</div>
+        <div id="msg-err" class="err">No se pudo enviar. Inténtalo de nuevo más tarde.</div>
+      </form>
+
+      <p class="small muted" style="margin-top:10px">Privacidad: sólo usaremos tus datos para la organización del evento.</p>
+    </section>
+
+    <section class="section card">
+      <h2>Preguntas frecuentes</h2>
+      <ul class="list">
+        <li><strong>¿Puedo cambiar mi respuesta?</strong> Sí, vuelve a rellenar el formulario con el mismo nombre.</li>
+        <li><strong>¿Hay autobús?</strong> Si te interesa, indícalo en el mensaje.</li>
+      </ul>
+    </section>
+
+    <footer>© Boda de Mer y Luis — Hecho con amor 💖</footer>
+  </div>
+
+  <script>
+    // Cliente JS: validación y envío
+    const form = document.getElementById('form-rsvp');
+    const ok = document.getElementById('msg-ok');
+    const err = document.getElementById('msg-err');
+    const btn = document.getElementById('btn-enviar');
+    const btnMailto = document.getElementById('btn-mailto');
+
+    function serializeForm(fd){
+      const obj = {};
+      for (const [k,v] of fd.entries()) obj[k] = v;
+      return obj;
+    }
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      ok.style.display='none'; err.style.display='none';
+
+      if (!form.reportValidity()) return;
+      // honeypot
+      if (document.getElementById('website').value) return;
+
+      btn.disabled = true;
+      const data = serializeForm(new FormData(form));
+
+      try{
+        const res = await fetch('/rsvp', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        ok.style.display='block';
+        form.reset();
+      }catch(ex){
+        console.error(ex);
+        err.style.display='block';
+      }finally{
+        btn.disabled = false;
+      }
+    });
+
+    // Alternativa: abre el email del usuario con los datos (no fiable para registrar, pero útil si no hay backend aún)
+    btnMailto.addEventListener('click', ()=>{
+      const fd = new FormData(form);
+      const d = serializeForm(fd);
+      const body = encodeURIComponent(
+        `Nombre: ${d.nombre || ''}%0D%0AEmail: ${d.email || ''}%0D%0ATeléfono: ${d.telefono || ''}%0D%0AAsistencia: ${d.asistencia || ''}%0D%0AAcompañantes: ${d.acompanantes || ''}%0D%0AMenú: ${d.menu || ''}%0D%0AAlergias: ${d.alergias || ''}%0D%0ACanción: ${d.cancion || ''}%0D%0AMensaje: ${d.mensaje || ''}`
+      );
+      window.location.href = `mailto:meryubero14@gmail.com?subject=RSVP boda&body=${body}`;
+    });
+  </script>
 </body>
 </html>
-
